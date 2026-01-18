@@ -1,0 +1,62 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:StrangerThings.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:views="clr-namespace:StrangerThings.Views"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="StrangerThings.Views.MainWindow"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="StrangerThings">
+
+    <Window.Styles>
+
+        <Style Selector ="Button.CellButton">
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="VerticalAlignment" Value="Stretch"/>
+            <Setter Property="Padding" Value="0"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Background" Value="Brown"/>
+        </Style>
+
+        <Style Selector="Border.Cell">
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="BorderBrush" Value="Black"/>
+          </Style>
+
+        <Style Selector="Border.VisitorLayer">
+			<Setter Property="Background" Value="Brown"/>
+        </Style>
+
+        <Style Selector="Border.VisitorLayer[Tag=Eleven]">
+			<Setter Property="Background" Value="White"/>
+        </Style>
+
+        <Style Selector="Border.VisitorLayer[Tag=Demogorgon]">
+			<Setter Property="Background" Value="Black"/>
+        </Style>
+
+          <Style Selector="Border.VisitorLayer[Tag=Portal]">
+			<Setter Property="Background" Value="Yellow"/>
+        </Style>
+        </Window.Styles>
+
+
+        <ItemsControl ItemsSource="{Binding Cells}">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <UniformGrid Rows="{Binding Size}" Columns="{Binding Size}"/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Button Classes="CellButton">
+                        <Border Classes="Cell VisitorLayer" Tag="{Binding GetOwner}"/>
+                </Button>
+
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+
+        </ItemsControl>
+
+</Window>
